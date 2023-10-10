@@ -41,6 +41,8 @@ class Pedido(models.Model):
         return f"{self.codigo}, {self.cliente}, {self.status}, {self.data_hora}"
 
 class ItemPedido(models.Model):
+    pedido = models.ForeignKey(Pedido, on_delete= models.CASCADE)
+    produto = models.CharField(max_length = 255)
     quantidade = models.IntegerField()
     preço = models.FloatField()
 
