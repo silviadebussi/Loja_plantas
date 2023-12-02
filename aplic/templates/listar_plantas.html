@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
+        <div class="container">
+            <a class="navbar-brand" href="/">Loja de Plantas</a>
+        </div>
+    </nav>
+
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantas</title>
+    <link rel="stylesheet" href="{% static 'aplic/style.css' %}">
+   
+    <style>
+        body {
+            background-color: #f8f9fa; /* Cor de fundo do corpo */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: blanchedalmond; /* Cor de fundo do conteúdo */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #007bff; /* Cor do título principal */
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        input {
+            padding: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745; /* Cor do botão */
+            color: #ffffff; /* Cor do texto do botão */
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #218838; /* Cor do botão ao passar o mouse */
+        }
+
+        .plantas-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .planta-item {
+            border: 1px solid #ced4da; /* Cor da borda da planta */
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #ffffff; /* Cor de fundo da planta */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .planta-item img {
+            max-width: 70%;
+            height: 200px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .mostrar-descricao {
+            color: #007bff; /* Cor do link de descrição */
+            cursor: pointer;
+            text-decoration: underline;
+            margin-right: 10px;
+        }
+
+        .mostrar-descricao:hover {
+            color: #0056b3; /* Cor do link de descrição ao passar o mouse */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro do modal */
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff; /* Cor de fundo do modal */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .fechar-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .fechar-modal:hover {
+            color: #555; /* Cor ao passar o mouse sobre o botão de fechar */
+        }
+
+        .navbar {
+            background-color: #6fb47a; /* Cor de fundo da navbar */
+            padding: 1rem;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #ffffff; /* Cor do texto da marca da navbar */
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .nav-item {
+            margin-right: 1rem;
+        }
+
+        .nav-link {
+            color: #ffffff; /* Cor do texto dos links na navbar */
+        }
+
+        .btn.back-button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .btn.back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var links = document.querySelectorAll('.mostrar-descricao');
+        var modal = document.getElementById('modal-descricao');
+        var descricaoPlant = document.getElementById('descricao-plant');
+        var fecharModal = document.querySelector('.fechar-modal');
+
+        links.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                var descricao = link.getAttribute('data-descricao');
+                descricaoPlant.textContent = descricao;
+                modal.style.display = 'block';
+            });
+        });
+
+        fecharModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<body>
+    <div class="container">
+        <h1>Lista de Plantas</h1>
+
+   
+        <form method="GET" action="{% url 'listar_plantas' %}">
+            <label for="search">Buscar:</label>
+            <input type="text" name="search" id="search" value="{{ termo_de_busca }}">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <ul class="plantas-list">
+            {% for planta in plantas %}
+                <li class="planta-item">
+                    <strong>{{ planta.nome }}</strong>
+                    {% if planta.imagem %}
+                        <a href="#" class="mostrar-descricao" data-descricao="{{ planta.descricao }}">Ver Descrição</a>
+                        <img class="img" src="{{ planta.imagem.url }}" alt="{{ planta.nome }}">
+                        <p>Preço: R$ {{ planta.preço }}</p>
+                        
+                        <form method="post" action="{% url 'adicionar_ao_carrinho' planta.id %}">
+                            {% csrf_token %}
+                            <label for="quantidade_{{ planta.id }}">Quantidade:</label>
+                            <input type="number" name="quantidade" id="quantidade_{{ planta.id }}" value="1" min="1">
+                            <input type="submit" value="Adicionar ao Carrinho">
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div id="modal-descricao" class="modal">
+            <div class="modal-content">
+                <span class="fechar-modal">&times;</span>
+                <p id="descricao-plant">Descrição da Planta</p>
+            </div>
+        </div>
+        <div class="row">
+            <a href="{% url 'index' %}" class="btn back-button">Voltar</a>
+        </div>
+    </div>
+    </body>
+</html>

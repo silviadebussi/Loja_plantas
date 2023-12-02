@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% load static %}
+    <title>Area cliente</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'aplic/style.css' %}">
+   
+    <style>
+        body {
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="area_cliente.html">Área do cliente</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'listar_plantas' %}">Lista de Plantas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registrar_endereco' %}">Registrar Endereço</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'avaliar_categoria' %}">Avaliar categoria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'fazer_logout' %}">Logout</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'meus_pedidos' %}">Meus Pedidos</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>
+            <a href="{% url 'visualizar_carrinho' %}">Ver Carrinho</a>
+        </h1>
+
+    </div>
+
+    {% for categoria in categorias %}
+        <h2>{{ categoria.nome }}</h2>
+
+        <!-- Exibir Avaliações Existentes -->
+        <h3>Avaliações</h3>
+        <ul>
+            {% for avaliacao in categoria.avaliacoes_categoria.all %}
+                <li>{{ avaliacao.cliente.username }} - {{ avaliacao.avaliacao }} estrelas - {{ avaliacao.comentario }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Adicionar Avaliação -->
+        <h3>Adicionar Avaliação</h3>
+        <form method="post" action="{% url 'adicionar_avaliacao' categoria.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Adicionar Avaliação</button>
+        </form>
+    {% endfor %}
+
+   
+
+</body>
+
+</html>

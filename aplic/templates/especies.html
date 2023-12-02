@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Espécies</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: blanchedalmond;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 15px;
+        }
+
+        strong {
+            color: #555;
+        }
+
+        .img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        p {
+            color: #777;
+        }
+
+        .btn.back-button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Listagem de Espécies</h1>
+
+    {% if especies %}
+        <ul>
+            {% for especie in especies %}
+                <li>
+                    <strong>Nome da Espécie:</strong> {{ especie.nome_da_especie }}<br>
+                    <strong>Descrição:</strong> {{ especie.descrição }}<br>
+                    <strong>Categoria Botânica:</strong> {{ especie.Categoria_Botânica }}<br>
+                    <strong>Necessidades de Luz:</strong> {{ especie.Necessidades_de_Luz }}<br>
+                    <strong>Usos da Espécie:</strong> {{ especie.Usos_da_Espécie }}<br>
+                    {% if especie.imagem %}
+                        <img class="img" src="{{ especie.imagem.url }}" alt="{{ especie.nome_da_especie }}">
+                    {% else %}
+                        <p>Sem imagem disponível</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma espécie cadastrada.</p>
+    {% endif %}
+
+    <div class="row">
+        <a href="{% url 'index' %}" class="btn back-button">Voltar</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      font-size: 18px;
+    }
+
+    .purchase-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: blanchedalmond; 
+    }
+
+    .purchase-form-container {
+      background-color: #fff; 
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 600px;
+    }
+
+    .purchase-form {
+      width: 100%;
+    }
+
+    .mb-3 {
+      margin-bottom: 1.5rem;
+    }
+
+    .total-amount {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .rounded-btn {
+      border-radius: 20px;
+    }
+
+   
+    .primary-bg {
+      background-color: #007bff; 
+      color: #fff;
+    }
+
+  
+    .btn-close {
+      padding: 0.5rem 0.75rem;
+    }
+
+    .finalize-btn {
+      background-color: #007bff; 
+      color: #fff;
+    }
+
+    
+    .back-to-cart-btn {
+      background-color: #007bff; 
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .back-to-cart-btn:hover::before {
+      content: "Voltar irá esvaziar o carrinho";
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      background-color: #007bff;
+      color: #000000;
+      padding: 5px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .back-to-cart-btn:hover::before {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="purchase-container">
+
+    {% if messages %}
+      <div class="alert alert-danger">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+        <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  
+    <div class="purchase-form-container">
+      <form method="post" class="purchase-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+  
+       
+        <p class="total-amount">Total: R$ {{ total_fixo }}</p>
+  
+  
+        <a href="{% url 'carrinho' %}" class="btn btn-secondary rounded-btn back-to-cart-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Voltar irá esvaziar o carrinho">
+          Voltar para o Carrinho
+        </a>
+  
+        <button type="submit" class="btn rounded-btn mb-3 finalize-btn">Finalizar Compra</button>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+  </script>
+  
+  </body>
+</html>

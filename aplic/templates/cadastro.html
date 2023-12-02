@@ -1,0 +1,99 @@
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: blanchedalmond;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+    width: 60%;
+  }
+
+  .double{
+    width: 300px;
+    height: auto;
+  }
+
+  .form-container {
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+  }
+
+  .register-button {
+    color: white;
+    border: none; 
+    padding: 10px;
+    background-color: #3badff; 
+    cursor: pointer; 
+    width: 50%; 
+    transition: background-color 0.3s;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  .register-button:hover {
+    background-color: #ffd700; 
+  }
+p{
+    color: black;
+}
+input {
+    width: 50%; 
+    margin-bottom: 10px;
+    
+  }
+
+
+  .back-button {
+    color: white;
+    border: none; 
+    padding: 10px;
+    background-color: #3badff; 
+    cursor: pointer; 
+    width: 50%; 
+    transition: background-color 0.3s;
+    height: auto;
+    margin-top: 10px;
+
+  }
+
+</style>
+<div class="flex-container">
+  <div class="form-container">
+    <img src="{% static 'imagens/jardim.jpg' %}" alt="">
+    <p>Informe seus dados</p>
+    <div class="row">
+      <form action="{% url 'cadastro' %}" method="post">
+          {% csrf_token %}
+          <input type="text" placeholder="Nome de usuário" name="username" required><br>
+          <input type="text" placeholder="Nome" name="nome" required><br>
+          <input type="text" placeholder="CPF" name="cpf" required><br>
+          <input type="password" placeholder="Senha" name="senha" required><br>
+          <button type="submit" class="btn btn-primary register-button">Cadastrar</button>
+      </form>
+  </div>
+  <div class="row">
+      <a href="{% url 'index' %}" class="btn back-button">Voltar</a>
+  </div>
+</div>
+</div>
+
+{% endblock %}

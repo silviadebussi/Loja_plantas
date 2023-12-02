@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrado com Sucesso</title>
+
+    <style>
+        body{
+            background-color: blanchedalmond;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Registrado com Sucesso!</h4>
+        <p>O registro foi concluído com sucesso. Continue em nosso sistema.</p>
+        <hr>
+        <p class="mb-0">Voltar ao inicio <a href="{% url 'login' %}"> clique aqui </a> agora.</p>
+    </div>
+</div>
+
+</body>
+</html>

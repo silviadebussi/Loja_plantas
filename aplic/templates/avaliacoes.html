@@ -1,0 +1,99 @@
+<!-- Seu template para a página de avaliação de categoria (avaliar_categoria.html) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Categoria</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select,
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Avaliação de Categoria</h1>
+
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'avaliar_categoria' %}">
+            {% csrf_token %}
+            
+            <!-- Campo para selecionar a categoria -->
+            <label for="categoria">Selecione a categoria:</label>
+            <select name="categoria" id="categoria">
+                <!-- Adicione as opções dinamicamente baseadas nas categorias disponíveis -->
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                {% endfor %}
+            </select>
+            
+            <!-- Campo para a avaliação -->
+            <label for="avaliacao">Avaliação:</label>
+            <input type="number" name="avaliacao" id="avaliacao" min="1" max="5" required>
+            
+            <!-- Campo para o comentário -->
+            <label for="comentario">Comentário (opcional):</label>
+            <textarea name="comentario" id="comentario" rows="4" cols="50"></textarea>
+            
+            <button type="submit">Enviar Avaliação</button>
+        </form>
+    {% else %}
+        <p>Para avaliar uma categoria, faça o login primeiro.</p>
+    {% endif %}
+</body>
+</html>
+
+

@@ -1,3 +1,135 @@
-<h1>
-    alo
-</h1>
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'aplic/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            background-size: cover; 
+            background-color: blanchedalmond;
+            background-position: center; 
+            background-repeat: no-repeat; 
+        }
+
+        .container2 {
+            display: flex;
+            align-items: center;
+        }
+
+        .Extensao-logo,
+        .descricao {
+            flex: 1;
+
+        }
+
+        .Extensao-logo img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: 280px;
+        }
+
+        .descricao{
+            color: rgb(37, 43, 43);
+            font-size: larger;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+
+        .divider {
+    background-color: #204b21;
+    background-image: url('{% static "imagens/pranta.jpg" %}');
+    color: rgb(255, 255, 255); 
+    padding: 50px; 
+    border-radius: 10px; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+    .divider h2 {
+    font-size: 2em; 
+    margin-bottom: 5px; 
+    margin-top: 40px;
+    font-style: italic;
+}
+
+    .divider a.btn {
+    font-size: 1.2em;
+    border-radius: 5px; 
+}
+
+    .divider a.btn:hover {
+    background-color: #273328; 
+}
+    .divider a.btn-primary{
+        background-color: rgb(42, 180, 125);
+    }
+
+
+    </style>
+    <title>{% block title %}Loja de Plantas{% endblock %}</title>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">Loja de Plantas</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href='listar_plantas.html'> Plantas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href='cadastro.html'> Cadastro cliente</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href='login.html'> Login cliente</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <li class="nav-item">
+                            <a class="nav-link" href="area_cliente.html">Area cliente</a>
+                        </li>
+                    <a class="nav-link" href="{% url 'fazer_logout' %}">Logout</a>
+                </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="container2">
+            <div class="Extensao-logo">
+                <img src="{% static 'imagens/familia_cliche.jpg' %}" alt="">
+            </div>
+            <div class="descricao">
+                <p>Bem-vindos(as) à nossa Loja Good Vibes de Plantas, um refúgio verde dedicado a promover o equilíbrio entre a natureza, a família e o bem-estar. Aqui, cultivamos um ambiente onde a harmonia e a positividade se entrelaçam com a beleza exuberante das plantas, criando um espaço que não é apenas uma loja, mas um santuário de boas energias.</p>
+                <p>Nosso compromisso com a natureza está profundamente enraizado em cada aspecto de nossa loja. Selecionamos cuidadosamente uma variedade de plantas que não só trazem aconchego e serenidade para o seu lar, mas também contribuem para um ambiente mais saudável. Optamos por métodos sustentáveis em nosso cultivo, minimizando o impacto ambiental e respeitando o ciclo natural da vida.</p>
+                <p>Acreditamos que o bem-estar da família é crucial, e é por isso que oferecemos plantas selecionadas por suas propriedades calmantes e purificadoras de ar. Queremos criar um ambiente onde todos possam se reconectar com a natureza, reduzir o estresse e promover uma sensação de paz interior.</p>
+            </div>
+        </div>
+
+        <br><br><br><br><br>
+
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="text-center">
+                        <div class="divider">
+                            <h2> Sobre nossas plantas</h2>
+                        
+                        <a href="{% url 'listar_especies' %}" class="btn btn-primary">Ver Plantas</a>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

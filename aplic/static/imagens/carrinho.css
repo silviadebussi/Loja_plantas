@@ -1,0 +1,38 @@
+/* Estilo geral */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+/* Estilo do carrinho de compras */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+p {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Estilo do carrinho vazio */
+p.empty-cart {
+    text-align: center;
+    color: #777;
+}
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% load static %}
+    <title>Your Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+      
+        body {
+            font-family: Arial, sans-serif;
+            background-color: blanchedalmond;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            border-radius: 12px; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
+            padding: 30px; 
+            width: 350px; 
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px; 
+            font-size: 24px; 
+        }
+
+        table {
+            margin: 0 auto;
+            width: 100%; 
+        }
+
+        table td {
+            padding: 15px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px; 
+            margin: 10px 0; 
+            box-sizing: border-box;
+            border-radius: 8px; 
+            border: 1px solid #ccc;
+            outline: none; 
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px; 
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 15px; 
+            font-size: 14px; 
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+
+        {% if form.errors %}
+        <p>Nome de usuário e senha inválidos. Tente novamente.</p>
+        {% endif %}
+
+        {% if next %}
+            {% if user.is_authenticated %}
+            <p>Para acessar a página realize login. 
+           </p>
+            {% else %}
+            <p>Faça o login para acessar a página</p>
+            {% endif %}
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Usuário</td>
+                    <td><input type="text" placeholder="" name="username"></td>
+                </tr>
+                <tr>
+                    <td>Senha</td>
+                    <td><input type="password" placeholder="" name="password"></td>
+                </tr>
+            </table>
+
+            <input type="submit" value="Login">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+        <div class="row">
+            <a href="{% url 'index' %}" class="btn back-button">Voltar</a>
+        </div>
+        
+    </div>
+</body>
+
+</html>

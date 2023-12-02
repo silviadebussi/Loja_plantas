@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="{% static 'imagens/carrinho.css' %}">
+
+    <style>
+        a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: #fff; /* Cor do texto branco */
+    border-radius: 5px; /* Borda arredondada */
+    transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: #45a049; /* Cor de fundo mais escura ao passar o mouse */
+}
+    </style>
+
+
+
+
+</head>
+<body>
+    <h1>Seu Carrinho de Compras</h1>
+
+    {% if itens %}
+        <ul>
+            {% for item in itens %}
+                <li>
+                    {{ item.planta.nome }} - Quantidade: {{ item.quantidade }} - Subtotal: R$ {{ item.subtotal }}
+                    <a href="{% url 'remover_do_carrinho' item.id %}">Remover</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Total do Carrinho: R$ {{ total }}</p>
+        <a href="{% url 'limpar_carrinho' %}">Limpar Carrinho</a>
+    {% else %}
+        <p class="empty-cart">Seu carrinho está vazio.</p>
+    {% endif %}
+        <br>
+        <br>
+    <a href="{% url 'listar_plantas' %}">Voltar para compra</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'realizar_compra' %}">Comprar</a>
+
+{% else %}
+    <p>Por favor, faça login para comprar.</p>
+{% endif %}
+
+</body>
+</html>

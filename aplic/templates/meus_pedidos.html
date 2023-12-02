@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% load static %}
+    <title>Meus Pedidos</title>
+</head>
+
+<body>
+
+    <h1>Meus Pedidos</h1>
+
+    <ul>
+        {% for pedido in pedidos %}
+            <li>{{ pedido.id }} - {{ pedido.data_do_pedido }} - R$ {{ pedido.total }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>
