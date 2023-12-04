@@ -109,7 +109,8 @@ def cadastro (request):
         cliente.save()
 
         return redirect('sucesso_cadastro_user')
-    
+
+@login_required   
 def registrar_endereco(request):
     if request.method == 'POST':
         formulario = EnderecoForm(request.user, request.POST)
@@ -164,7 +165,7 @@ def adicionar_ao_carrinho(request, planta_id):
     planta = get_object_or_404(Planta, pk=planta_id)
 
     if request.method == 'POST':
-        quantidade = int(request.POST.get('quantidade', 1))
+        quantidade = int(request.POST.get('quantidade', 155))
         user = request.user
 
       
@@ -304,6 +305,7 @@ def realizar_compra(request):
 
     return render(request, 'realizar_compra.html', {'form': form, 'total_fixo': total_fixo, 'itens_da_compra': itens_da_compra})
 
+
 def area_cliente(request):
     categorias = Categorias.objects.all()
     pedidos = Pedido.objects.filter(cliente=request.user)
@@ -326,6 +328,7 @@ def area_cliente(request):
 
     return render(request, 'area_cliente.html', context)
 
+@login_required
 def adicionar_avaliacao(request, categoria_id):
     categoria = get_object_or_404(Categorias, pk=categoria_id)
 
@@ -351,3 +354,7 @@ def listar_pedidos(request):
     pedidos = Pedido.objects.filter(cliente=cliente_atual)
 
     return render(request, 'meus_pedidos.html', {'pedidos': pedidos})
+
+def abrir_descricao(request):
+    descricao = request.GET.get('descricao', '')
+    return render(request, 'abrir_descricao.html', {'descricao': descricao})
