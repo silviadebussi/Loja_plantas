@@ -21,7 +21,7 @@
 
         <form method="GET" action="{% url 'listar_plantas' %}" class="search-form">
             <label for="search" class="sr-only">Buscar:</label>
-            <input type="text" name="search" id="search" placeholder="Buscar plantas" value="{{ termo_de_busca }}">
+            <input type="text" name="search" id="search" value="{{ termo_de_busca }}" placeholder="Buscar plantas">
             <button type="submit">Buscar</button>
         </form>
 

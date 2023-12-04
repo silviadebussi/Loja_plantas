@@ -1,11 +1,10 @@
-/* Reset de Estilos */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilos Gerais */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
@@ -22,17 +21,16 @@ body {
     border-radius: 10px;
 }
 
-/* Navbar Estilos */
 .navbar {
     background-color: #1f3952;
-    padding: 5px 0; /* Reduzir o padding */
+    padding: 5px 0; 
     color: #fff;
 }
 
 .navbar a {
     color: #000000;
     text-decoration: none;
-    margin-right: 15px; /* Reduzir a margem */
+    margin-right: 15px; 
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -41,7 +39,6 @@ body {
     color: #5e8f5e;
 }
 
-/* Lista de Plantas Estilos */
 .plantas-list {
     list-style: none;
     padding: 0;
@@ -82,7 +79,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* Botões */
+
 .buttons-container {
     display: flex;
     justify-content: space-between;
@@ -136,12 +133,14 @@ body {
     cursor: pointer;
 }
 
-/* Centralizar a barra de pesquisa */
+
 .search-form {
     text-align: center;
+    width: 100%;
 }
 
 .search-form input,
 .search-form button {
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }

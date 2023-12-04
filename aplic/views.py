@@ -60,12 +60,14 @@ class Meus_PedidosView(TemplateView):
 def lista_plantas(request):
     plantas = Planta.objects.all()
 
-   
-    search_term = request.GET.get('search')
+    search_term = request.GET.get('search', '')
+
     if search_term:
         plantas = plantas.filter(nome__icontains=search_term)
 
     context = {'plantas': plantas, 'termo_de_busca': search_term}
+
+
     return render(request, 'listar_plantas.html', context)
 
 def index(request):
