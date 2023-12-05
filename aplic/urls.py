@@ -9,7 +9,7 @@ from .views import (
     index,
     AreaClienteView, LoginView, avaliar_categoria, realizar_compra, SucessoCompraView,
     cadastro, registrar_endereco, SucessoView, CarrinhoView, SucessoCadastroView, adicionar_ao_carrinho, CarrinhoDeCompras, visualizar_carrinho, remover_do_carrinho, limpar_carrinho, fazer_logout, adicionar_avaliacao,
-    listar_pedidos, abrir_descricao
+    abrir_descricao
  
 )
 from django.contrib.auth import views

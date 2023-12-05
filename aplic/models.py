@@ -82,7 +82,7 @@ class Endereco(models.Model):
 
 
 class Pedido(models.Model):
-    codigo = models.CharField(max_length=100, blank=False)
+    codigo_pedido = models.CharField(max_length=10, unique=True, null = True)
     cliente = models.ForeignKey(Cliente, on_delete= models.CASCADE, null=True)
     status = models.CharField(
     max_length=100,
@@ -97,7 +97,7 @@ class Pedido(models.Model):
     data_hora = models.DateField()
 
     def __str__(self):
-        return f"{self.codigo}, {self.cliente}, {self.status}, {self.data_hora}"
+        return f" {self.cliente}, {self.status}, {self.data_hora}, {self.codigo_pedido}"
     
     class Meta:
         verbose_name = 'Pedido'
@@ -233,6 +233,7 @@ class Compra(models.Model):
     total = models.DecimalField(max_digits=10, decimal_places=2)
     data = models.DateTimeField(auto_now_add=True)
     endereco = models.ForeignKey('Endereco', on_delete=models.CASCADE, null=True)
+
     
     formas_pagamento = [
         ('cartao_credito', 'Cartão de crédito'),

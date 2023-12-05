@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect,get_object_or_404
 from django.shortcuts import render
 from .forms import EnderecoForm, AvaliacaoCategoriaForm
-from decimal import Decimal 
+import uuid
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CompraForm
@@ -278,33 +278,26 @@ def realizar_compra(request):
 
             compra = form.save(commit=False)
 
+
             compra.cliente = cliente_atual
-
             compra.total = total_fixo
-
-          
             compra.endereco = endereco_cliente
 
-           
             compra.save()
 
-           
             compra.itens.set(ItemPedido.objects.filter(id__in=itens_ids, pedido__cliente=cliente_atual))
 
-           
             request.session['carrinho'] = []
 
             return redirect('sucesso_compra')
         else:
             messages.error(request, 'Erro ao processar o formulário. Verifique os campos.')
     else:
-       
         form = CompraForm(initial={'cliente': cliente_atual, 'endereco': endereco_cliente})
 
     itens_da_compra = ItemPedido.objects.filter(pedido__cliente=cliente_atual)
 
     return render(request, 'realizar_compra.html', {'form': form, 'total_fixo': total_fixo, 'itens_da_compra': itens_da_compra})
-
 
 def area_cliente(request):
     categorias = Categorias.objects.all()
@@ -346,14 +339,6 @@ def adicionar_avaliacao(request, categoria_id):
     return render(request, 'adicionar_avaliacao.html', {'form': form, 'categoria': categoria})
 
 
-
-@login_required
-def listar_pedidos(request):
-    cliente_atual = Cliente.objects.get(user=request.user)
-
-    pedidos = Pedido.objects.filter(cliente=cliente_atual)
-
-    return render(request, 'meus_pedidos.html', {'pedidos': pedidos})
 
 def abrir_descricao(request):
     descricao = request.GET.get('descricao', '')
