@@ -61,7 +61,7 @@ class PlantaAdmin(admin.ModelAdmin):
 
 @admin.register(Especie)
 class EspecieAdmin(admin.ModelAdmin):
-    list_display = ['nome_da_especie','descrição','Categoria_Botânica','Necessidades_de_Luz','Usos_da_Espécie','imagem']
+    list_display = ['nome_da_especie','descrição','Categoria_Botânica','Necessidades_de_Luz','Usos_da_Espécie','imagem', 'Planta']
 
 @admin.register(Status)
 class StatusAdmin(admin.ModelAdmin):

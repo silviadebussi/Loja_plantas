@@ -177,6 +177,7 @@ class Planta(models.Model):
         verbose_name_plural = 'Plantas'
 
 class Especie(models.Model):
+    Planta = models.ForeignKey('Planta', on_delete=models.CASCADE, default=1)
     nome_da_especie = models.CharField(max_length=100)
     descrição = models.CharField(max_length=100)
     Categoria_Botânica = models.CharField(max_length=100)
