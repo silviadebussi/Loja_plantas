@@ -83,8 +83,6 @@ def cliente_login(request):
         if cliente is not None:
             login(request, cliente)
             return redirect('area_cliente') 
-    
-    return render(request, 'login.html')
 
 def cadastro (request):
     if request.method == "GET":

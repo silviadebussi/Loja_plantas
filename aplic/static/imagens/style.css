@@ -23,7 +23,7 @@ body {
 }
 
 .planta-item {
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(241, 190, 190);
     border-radius: 10px;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
@@ -62,46 +62,48 @@ body {
     margin-top: 10px;
 }
 
-.add-to-cart-form {
-    margin: 0;
-}
-
-.add-to-cart-button,
-.mostrar-descricao-button {
-    padding: 12px 20px;
-    background-color: #28a745;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.add-to-cart-button {
-    background-color: #28a745;
-}
-
-.add-to-cart-button:hover {
-    background-color: #218838;
-}
-
-
-.fechar-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-
 .search-form {
     text-align: center;
     width: 100%;
 }
 
-.search-form input,
-.search-form button {
+.search-form input {
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc; 
+    outline: none; 
+}
+
+.search-form button {
+    margin-top: 10px; 
+    margin-bottom: 30px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px; 
+    background-color: #3498db; 
+    color: white; 
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    align-items: center;
+    padding: 7px 20px; 
+    border: none; 
+    font-size: 16px;
+    border-radius: 5px; 
+    background-color: #3498db; 
+    color: #fff; 
+}
+
+.mostrar-descricao {
+    color: #3498db; 
+    text-decoration: none; 
+    font-weight: bold; 
+    display: inline-block; 
+    padding: 8px 12px; 
+    border: 1px solid #3498db; 
+    border-radius: 5px;
+    transition: background-color 0.3s ease; 
+
 }

@@ -11,10 +11,10 @@
 
     <style>
         body{
-            background-color: blanchedalmond;
+            background-color: rgb(255, 205, 205);
         }
         .planta-item{
-            background-color: rgb(253, 220, 220);
+            background-color: rgb(245, 195, 195);
         }
 
     </style>
@@ -61,7 +61,6 @@
             <li class="planta-item">
                 <strong>{{ planta.nome }}</strong>
                 {% if planta.imagem %}
-                <a href="#" class="mostrar-descricao" data-descricao="{{ planta.descricao }}">Ver Descrição</a>
                 <img src="{{ planta.imagem.url }}" alt="{{ planta.nome }}" class="plant-image">
                 <p class="price">Preço: R$ {{ planta.preço }}</p>
 
@@ -69,7 +68,11 @@
                     {% csrf_token %}
                     <label for="quantidade_{{ planta.id }}" class="sr-only">Quantidade:</label>
                     <input type="number" name="quantidade" id="quantidade_{{ planta.id }}" value="1" min="1">
+                    <br><br>
+                    <a href="#" class="mostrar-descricao" data-descricao="{{ planta.descricao }}">Ver Descrição</a>
+                    <br><br>
                     <input type="submit" value="Adicionar ao Carrinho">
+                    
                 </form>
                 {% endif %}
             </li>
@@ -78,6 +81,7 @@
 
         <div class="back-button-container">
             <a href="{% url 'index' %}" class="btn back-button">Voltar</a>
+
         </div>
     </div>
 

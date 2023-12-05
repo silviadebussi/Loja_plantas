@@ -42,8 +42,7 @@ urlpatterns = [
     path('avaliacoes.html', avaliar_categoria, name='avaliar_categoria'),
     path('realizar-compra/', realizar_compra, name='realizar_compra'),
     path('adicionar_avaliacao/<int:categoria>/',  adicionar_avaliacao , name='adicionar_avaliacao'),
-    path('meus_pedidos.html', listar_pedidos, name='meus_pedidos'),
-     path('abrir_descricao/', abrir_descricao, name='abrir_descricao')
+    path('abrir_descricao/', abrir_descricao, name='abrir_descricao')
 ]
 
 
