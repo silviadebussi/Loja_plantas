@@ -17,9 +17,6 @@ class Cliente(models.Model):
     cpf = models.CharField(max_length=11, unique=True)
 
     
-    # Para ser feito essa parte você deve importar User
-    # from django.contrib.auth.models import User
-    # Essa parte vincúla o cliente com o User que o ele criar na hora de cadastrar um novo Cliente no sistema 
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='padrao')
     #=========================================================================================================
     
