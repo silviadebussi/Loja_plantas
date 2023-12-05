@@ -39,7 +39,6 @@ class CompraForm(forms.ModelForm):
         model = Compra
         fields = ['endereco', 'cliente', 'metodo_pagamento']  
 
-
 class AvaliacaoCategoriaForm(forms.ModelForm):
     class Meta:
         model = AvaliacaoCategoria
