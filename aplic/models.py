@@ -233,6 +233,11 @@ class Compra(models.Model):
     data = models.DateTimeField(auto_now_add=True)
     endereco = models.ForeignKey('Endereco', on_delete=models.CASCADE, null=True)
     
+    formas_pagamento = [
+        ('cartao_credito', 'Cartão de crédito'),
+        ('pix', 'PIX'),
+    ]
+    metodo_pagamento = models.CharField(max_length=20, choices=formas_pagamento, default='PIX')
 
 
     def __str__(self):

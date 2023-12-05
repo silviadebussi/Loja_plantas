@@ -1,7 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from django import forms
-from .models import Endereco, AvaliacaoCategoria, Compra, Cliente
-
+from .models import Endereco, AvaliacaoCategoria, Compra
 class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
@@ -38,7 +37,7 @@ class AvaliacaoCategoriaForm(forms.ModelForm):
 class CompraForm(forms.ModelForm):
     class Meta:
         model = Compra
-        fields = ['endereco', 'cliente']  
+        fields = ['endereco', 'cliente', 'metodo_pagamento']  
 
 
 class AvaliacaoCategoriaForm(forms.ModelForm):
