@@ -4,17 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Descrição da Planta</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+    </style>
+
 </head>
 <body>
-    <h2>Descrição da Planta</h2>
-    <p id="descricao"></p>
+    <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <h2>Descrição da Planta</h2>
+        <p id="descricao"></p>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Obter a descrição da URL
             var descricaoParam = new URLSearchParams(window.location.search).get('descricao');
 
-            // Exibir a descrição na página
             document.getElementById('descricao').innerText = descricaoParam;
         });
     </script>
