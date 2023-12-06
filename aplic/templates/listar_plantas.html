@@ -99,15 +99,11 @@
             });
 
             function abrirDescricao(descricao) {
-                var novaJanela = window.open('', '_blank', 'width=600,height=400');
-                novaJanela.document.write('<html><head><title>Descrição da Planta</title></head><body>');
-                novaJanela.document.write('<h2>Descrição da Planta</h2>');
-                novaJanela.document.write('<p>' + descricao + '</p>');
-                novaJanela.document.write('</body></html>');
-                novaJanela.document.close();
+                // Abrir a nova página HTML
+                window.location.href = 'descricao.html?descricao=' + encodeURIComponent(descricao);
             }
         });
-
+    
     </script>
 
  

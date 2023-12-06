@@ -57,6 +57,9 @@ class LoginView(TemplateView):
 class Meus_PedidosView(TemplateView):
     template_name = 'meus_pedidos.html'
 
+class DescricaoView(TemplateView):
+    template_name = 'descricao.html'
+
 def lista_plantas(request):
     plantas = Planta.objects.all()
 
