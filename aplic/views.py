@@ -341,10 +341,10 @@ def adicionar_avaliacao(request, categoria_id):
 
     else:
         form = AvaliacaoCategoriaForm()
-    return render(request, 'adicionar_avaliacao.html', {'form': form, 'categoria': categoria})
+    return render(request, 'adicionar_avaliacao.html', {'form': form})
 
 
 def detalhes_planta(request, planta_id):
     planta = get_object_or_404(Planta, id=planta_id)
-    context = {'descricao': planta.descricao, 'cuidados': planta.cuidados}
+    context = {'descricao': planta.descricao, 'cuidados': planta.cuidados, 'categorias': planta.categorias, 'nome': planta.nome}
     return render(request, 'detalhes.html', context)
