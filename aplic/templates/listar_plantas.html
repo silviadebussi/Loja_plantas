@@ -69,7 +69,7 @@
                     <label for="quantidade_{{ planta.id }}" class="sr-only">Quantidade:</label>
                     <input type="number" name="quantidade" id="quantidade_{{ planta.id }}" value="1" min="1">
                     <br><br>
-                    <a href="{% url 'mostrar_descricao' descricao=planta.descricao %} " class="link-descricao">Ver Descrição</a>
+                    <a href="{% url 'detalhes_planta' planta.id %}" class = 'detalhes'>Ver Detalhes</a>
                     <br><br>
                     <input type="submit" value="Adicionar ao Carrinho">
                     

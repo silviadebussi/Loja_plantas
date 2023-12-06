@@ -9,7 +9,7 @@ from .views import (
     index,
     AreaClienteView, LoginView, avaliar_categoria, realizar_compra, SucessoCompraView,
     cadastro, registrar_endereco, SucessoView, CarrinhoView, SucessoCadastroView, adicionar_ao_carrinho, CarrinhoDeCompras, visualizar_carrinho, remover_do_carrinho, limpar_carrinho, fazer_logout, adicionar_avaliacao,
-     DescricaoView, mostrar_descricao
+     detalhes_planta, DetalhesView
  
 )
 from django.contrib.auth import views
@@ -41,8 +41,9 @@ urlpatterns = [
     path('avaliacoes.html', avaliar_categoria, name='avaliar_categoria'),
     path('realizar-compra/', realizar_compra, name='realizar_compra'),
     path('adicionar_avaliacao/<int:categoria>/',  adicionar_avaliacao , name='adicionar_avaliacao'),
-    path('descricao.html', DescricaoView.as_view(), name = 'descricao' ),
-    path('mostrar_descricao/<str:descricao>/', mostrar_descricao, name='mostrar_descricao')
+    path('plantas/<int:planta_id>/', detalhes_planta, name='detalhes_planta'),
+     path('detalhes.html', DetalhesView.as_view(), name = 'detalhes' ),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

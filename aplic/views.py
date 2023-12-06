@@ -54,11 +54,13 @@ class EspecieView(TemplateView):
 class LoginView(TemplateView):
     template_name = 'login.html'
 
-class Meus_PedidosView(TemplateView):
-    template_name = 'meus_pedidos.html'
+class DetalhesView(TemplateView):
+    template_name = 'detalhes.html'
 
 class DescricaoView(TemplateView):
     template_name = 'descricao.html'
+
+
 
 def lista_plantas(request):
     plantas = Planta.objects.all()
@@ -342,5 +344,7 @@ def adicionar_avaliacao(request, categoria_id):
     return render(request, 'adicionar_avaliacao.html', {'form': form, 'categoria': categoria})
 
 
-def mostrar_descricao(request, descricao):
-    return render(request, 'descricao.html', {'descricao': descricao})
+def detalhes_planta(request, planta_id):
+    planta = get_object_or_404(Planta, id=planta_id)
+    context = {'descricao': planta.descricao, 'cuidados': planta.cuidados}
+    return render(request, 'detalhes.html', context)
