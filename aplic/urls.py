@@ -23,7 +23,6 @@ urlpatterns = [
     path('entrar.html', EntrarView.as_view(), name="entrar"),
     path('area_cliente.html', AreaClienteView.as_view(), name='area_cliente'),
     path('listar_plantas.html', lista_plantas, name='listar_plantas'),
-    path('listar_plantas_class.html', ListarPlantasView.as_view(), name='listar_plantas_class'), 
     path('index.html', index, name='index'), 
     path('login.html', views.LoginView.as_view(template_name="login.html", authentication_form=UserLoginForm), name='login'),
     path("cadastro.html", cadastro, name="cadastro"),
