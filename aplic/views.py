@@ -342,7 +342,5 @@ def adicionar_avaliacao(request, categoria_id):
     return render(request, 'adicionar_avaliacao.html', {'form': form, 'categoria': categoria})
 
 
-
-def abrir_descricao(request):
-    descricao = request.GET.get('descricao', '')
-    return render(request, 'abrir_descricao.html', {'descricao': descricao})
+def mostrar_descricao(request, descricao):
+    return render(request, 'descricao.html', {'descricao': descricao})

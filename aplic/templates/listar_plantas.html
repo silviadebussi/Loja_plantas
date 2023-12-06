@@ -69,8 +69,7 @@
                     <label for="quantidade_{{ planta.id }}" class="sr-only">Quantidade:</label>
                     <input type="number" name="quantidade" id="quantidade_{{ planta.id }}" value="1" min="1">
                     <br><br>
-                    <a href="#" class="mostrar-descricao" data-descricao="{{ planta.descricao }}">Ver Descrição</a>
-
+                    <a href="{% url 'mostrar_descricao' descricao=planta.descricao %}">Ver Descrição</a>
                     <br><br>
                     <input type="submit" value="Adicionar ao Carrinho">
                     
@@ -85,28 +84,5 @@
 
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var links = document.querySelectorAll('.mostrar-descricao');
-
-            links.forEach(function (link) {
-                link.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    var descricao = link.getAttribute('data-descricao');
-                    abrirDescricao(descricao);
-                });
-            });
-
-            function abrirDescricao(descricao) {
-                window.location.href = 'descricao.html?descricao=' + encodeURIComponent(descricao);
-            }
-        });
-    
-    </script>
-
- 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-</body>
 
 </html>
