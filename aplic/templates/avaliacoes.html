@@ -1,6 +1,3 @@
-<!-- Seu template para a página de avaliação de categoria (avaliar_categoria.html) -->
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,20 +68,17 @@
         <form method="post" action="{% url 'avaliar_categoria' %}">
             {% csrf_token %}
             
-            <!-- Campo para selecionar a categoria -->
             <label for="categoria">Selecione a categoria:</label>
             <select name="categoria" id="categoria">
-                <!-- Adicione as opções dinamicamente baseadas nas categorias disponíveis -->
+        
                 {% for categoria in categorias %}
                     <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
                 {% endfor %}
             </select>
             
-            <!-- Campo para a avaliação -->
             <label for="avaliacao">Avaliação:</label>
             <input type="number" name="avaliacao" id="avaliacao" min="1" max="5" required>
             
-            <!-- Campo para o comentário -->
             <label for="comentario">Comentário (opcional):</label>
             <textarea name="comentario" id="comentario" rows="4" cols="50"></textarea>
             

@@ -163,8 +163,8 @@ class HistoricoStatus(models.Model):
 class Planta(models.Model):
     nome = models.CharField(max_length=100)
     preço = models.FloatField()
-    descricao = models.CharField(max_length=100)
-    cuidados = models.CharField(max_length=100)
+    descricao = models.CharField(max_length=1000)
+    cuidados = models.CharField(max_length=1000)
     categorias = models.ManyToManyField('Categorias', related_name='categorias')
     imagem = models.ImageField(upload_to='imagens_plantas/', null=True, blank=True)
 
@@ -179,10 +179,10 @@ class Planta(models.Model):
 class Especie(models.Model):
     Planta = models.ForeignKey('Planta', on_delete=models.CASCADE, default=1)
     nome_da_especie = models.CharField(max_length=100)
-    descrição = models.CharField(max_length=100)
-    Categoria_Botânica = models.CharField(max_length=100)
-    Necessidades_de_Luz = models.CharField(max_length=100)
-    Usos_da_Espécie = models.CharField(max_length=100)
+    descrição = models.CharField(max_length=1000)
+    Categoria_Botânica = models.CharField(max_length=1000)
+    Necessidades_de_Luz = models.CharField(max_length=1000)
+    Usos_da_Espécie = models.CharField(max_length=1000)
     imagem = models.ImageField(upload_to='imagens_especies/', null=True, blank=True)
 
     def __str__(self):
@@ -201,8 +201,8 @@ class Categorias(models.Model):
             ('Jardim', 'Planta natural'),
         ]
     )
-    manutencao = models.CharField(max_length=100)
-    cultivo = models.CharField(max_length=100)
+    manutencao = models.CharField(max_length=1000)
+    cultivo = models.CharField(max_length=1000)
     
 
     def __str__(self):
